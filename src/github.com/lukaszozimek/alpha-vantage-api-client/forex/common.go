@@ -46,7 +46,7 @@ type Result struct {
 	Close float32 `json:"4. close"`
 }
 
-func makeApiCallGet(url string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func makeApiCallGet(url string, c *Client) *AlphaVantageIntraExchangeRate {
 
 	res, e := c.HttpClient.Get(url)
 	if e != nil {
@@ -62,8 +62,8 @@ func makeApiCallGet(url string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 	}
 	return s
 }
-func getData(body []byte) (*AlphaVantageTimeSeriesApiResponse, error) {
-	var s = new(AlphaVantageTimeSeriesApiResponse)
+func getData(body []byte) (*AlphaVantageIntraExchangeRate, error) {
+	var s = new(AlphaVantageIntraExchangeRate)
 	err := json.Unmarshal(body, &s)
 	if err != nil {
 		fmt.Println("whoops:", err)
