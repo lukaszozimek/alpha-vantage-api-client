@@ -8,7 +8,7 @@ import (
 
 func FxRealTimeCall(symbol string, interval string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
 
-	makeApiCallGetRealTime("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=CNY&apikey=demo", c)
+	return makeApiCallGetRealTime("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=CNY&apikey=demo", c)
 }
 func makeApiCallGetRealTime(url string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
 
