@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 )
 
-func FxRealTimeCall(symbol string, interval string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
+func FxRealTimeCall(symbol string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
 
-	return makeApiCallGetRealTime("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo", c)
+	return makeApiCallGetRealTime(fmt.Sprintf("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%v&apikey=demo", symbol), c)
 }
 func makeApiCallGetRealTime(url string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
 

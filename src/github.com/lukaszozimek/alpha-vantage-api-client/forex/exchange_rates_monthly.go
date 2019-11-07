@@ -1,5 +1,8 @@
 package forex
 
-func GetMonthly(symbol string, c *Client) *AlphaVantageIntraExchangeRate {
-	return makeApiCallGet("https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=EUR&to_symbol=USD&apikey=demo", c)
+import "fmt"
+
+func GetMonthly(fromSymbol string, toSymbol string, c *Client) *AlphaVantageIntraExchangeRate {
+	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=%v&to_symbol=%v&&apikey=demo", fromSymbol, toSymbol), c)
+
 }

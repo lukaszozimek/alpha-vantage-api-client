@@ -1,5 +1,7 @@
 package time_series
 
+import "fmt"
+
 const (
 	ONE_MINUTE        = "1min"
 	FIVE_MINUTE       = "5min"
@@ -30,5 +32,5 @@ func TimeSeriesIntraDayIntervalSixtyMinute(symbol string, c *Client) *AlphaVanta
 }
 func timeSeriesIntraDay(symbol string, interval string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
-	return makeApiCallGet("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=demo", c)
+	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=%v&interval%v&apikey=demo", symbol, interval), c)
 }

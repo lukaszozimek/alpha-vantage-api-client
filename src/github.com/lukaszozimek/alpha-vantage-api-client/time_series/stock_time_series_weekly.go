@@ -1,7 +1,9 @@
 package time_series
 
+import "fmt"
+
 func GetWeekly(symbol string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
-	return makeApiCallGet("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=MSFT&apikey=demo", c)
+	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=%v&apikey=demo", symbol), c)
 
 }

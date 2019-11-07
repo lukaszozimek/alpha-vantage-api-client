@@ -1,6 +1,8 @@
 package forex
 
-func timeSeriesDaily(symbol string, c *Client) *AlphaVantageIntraExchangeRate {
+import "fmt"
 
-	return makeApiCallGet("https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=CNY&apikey=demo", c)
+func timeSeriesDaily(symbol string, market string, c *Client) *AlphaVantageIntraExchangeRate {
+
+	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=%v&market=%v&apikey=demo", symbol, market), c)
 }

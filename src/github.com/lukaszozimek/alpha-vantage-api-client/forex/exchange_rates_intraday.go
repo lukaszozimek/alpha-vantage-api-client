@@ -1,5 +1,7 @@
 package forex
 
+import "fmt"
+
 const (
 	ONE_MINUTE        = "1min"
 	FIVE_MINUTE       = "5min"
@@ -30,5 +32,5 @@ func TimeSeriesIntraDayIntervalSixtyMinute(fromSymbol string, toSymbol string, c
 }
 func timeSeriesIntraDay(fromSymbol string, toSymbol string, interval string, c *Client) *AlphaVantageIntraExchangeRate {
 
-	return makeApiCallGet("https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=USD&interval=5min&apikey=demo", c)
+	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=%v&to_symbol=%v&interval=%v&apikey=demo", fromSymbol, toSymbol, interval), c)
 }
