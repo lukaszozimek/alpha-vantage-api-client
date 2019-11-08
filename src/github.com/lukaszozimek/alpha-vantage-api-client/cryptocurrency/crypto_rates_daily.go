@@ -2,7 +2,7 @@ package forex
 
 import "fmt"
 
-func timeSeriesDaily(symbol string, market string, c *Client) *AlphaVantageIntraExchangeRate {
+func timeSeriesDaily(symbol string, market string, apiKey string, c *Client) *AlphaVantageIntraExchangeRate {
 
-	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=%v&market=%v&apikey=demo", symbol, market), c)
+	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=%v&market=%v&apikey=%v", symbol, market, apiKey), c)
 }

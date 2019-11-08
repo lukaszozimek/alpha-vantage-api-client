@@ -10,23 +10,23 @@ const (
 	SIXTY_MINUTE      = "60min"
 )
 
-func TimeSeriesIntraDayInterval1minute(symbol string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayInterval1minute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, ONE_MINUTE, c)
 }
-func TimeSeriesIntraDayInterval5minute(symbol string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayInterval5minute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, FIVE_MINUTE, c)
 }
-func TimeSeriesIntraDayIntervalFifteenMinute(symbol string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayIntervalFifteenMinute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, FIFITHTEEN_MINUTE, c)
 }
-func TimeSeriesIntraDayIntervalThirtyMinute(symbol string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayIntervalThirtyMinute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, THIRTY_MINUTE, c)
 }
-func TimeSeriesIntraDayIntervalSixtyMinute(symbol string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayIntervalSixtyMinute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, SIXTY_MINUTE, c)
 }

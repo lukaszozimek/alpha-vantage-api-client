@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 )
 
-func FxRealTimeCall(fromCurrency string, toCurrency string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
+func FxRealTimeCall(fromCurrency string, toCurrency string, apiKey string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
 
-	return makeApiCallGetRealTime(fmt.Sprintf("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=%v&to_currency=%v&apikey=demo", fromCurrency, toCurrency), c)
+	return makeApiCallGetRealTime(fmt.Sprintf("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=%v&to_currency=%v&apikey=%v", fromCurrency, toCurrency, apiKey), c)
 }
 func makeApiCallGetRealTime(url string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
 

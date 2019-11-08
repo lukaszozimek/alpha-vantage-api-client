@@ -10,27 +10,27 @@ const (
 	SIXTY_MINUTE      = "60min"
 )
 
-func TimeSeriesIntraDayInterval1minute(fromSymbol string, toSymbol string, c *Client) *AlphaVantageIntraExchangeRate {
+func TimeSeriesIntraDayInterval1minute(fromSymbol string, toSymbol string, apiKey string, c *Client) *AlphaVantageIntraExchangeRate {
 
-	return timeSeriesIntraDay(fromSymbol, toSymbol, ONE_MINUTE, c)
+	return timeSeriesIntraDay(fromSymbol, toSymbol, ONE_MINUTE, apiKey, c)
 }
-func TimeSeriesIntraDayInterval5minute(fromSymbol string, toSymbol string, c *Client) *AlphaVantageIntraExchangeRate {
+func TimeSeriesIntraDayInterval5minute(fromSymbol string, toSymbol string, apiKey string, c *Client) *AlphaVantageIntraExchangeRate {
 
-	return timeSeriesIntraDay(fromSymbol, toSymbol, FIVE_MINUTE, c)
+	return timeSeriesIntraDay(fromSymbol, toSymbol, FIVE_MINUTE, apiKey, c)
 }
-func TimeSeriesIntraDayIntervalFifteenMinute(fromSymbol string, toSymbol string, c *Client) *AlphaVantageIntraExchangeRate {
+func TimeSeriesIntraDayIntervalFifteenMinute(fromSymbol string, toSymbol string, apiKey string, c *Client) *AlphaVantageIntraExchangeRate {
 
-	return timeSeriesIntraDay(fromSymbol, toSymbol, FIFITHTEEN_MINUTE, c)
+	return timeSeriesIntraDay(fromSymbol, toSymbol, FIFITHTEEN_MINUTE, apiKey, c)
 }
-func TimeSeriesIntraDayIntervalThirtyMinute(fromSymbol string, toSymbol string, c *Client) *AlphaVantageIntraExchangeRate {
+func TimeSeriesIntraDayIntervalThirtyMinute(fromSymbol string, toSymbol string, apiKey string, c *Client) *AlphaVantageIntraExchangeRate {
 
-	return timeSeriesIntraDay(fromSymbol, toSymbol, THIRTY_MINUTE, c)
+	return timeSeriesIntraDay(fromSymbol, toSymbol, THIRTY_MINUTE, apiKey, c)
 }
-func TimeSeriesIntraDayIntervalSixtyMinute(fromSymbol string, toSymbol string, c *Client) *AlphaVantageIntraExchangeRate {
+func TimeSeriesIntraDayIntervalSixtyMinute(fromSymbol string, toSymbol string, apiKey string, c *Client) *AlphaVantageIntraExchangeRate {
 
-	return timeSeriesIntraDay(fromSymbol, toSymbol, SIXTY_MINUTE, c)
+	return timeSeriesIntraDay(fromSymbol, toSymbol, SIXTY_MINUTE, apiKey, c)
 }
-func timeSeriesIntraDay(fromSymbol string, toSymbol string, interval string, c *Client) *AlphaVantageIntraExchangeRate {
+func timeSeriesIntraDay(fromSymbol string, toSymbol string, interval string, apiKey string, c *Client) *AlphaVantageIntraExchangeRate {
 
-	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=%v&to_symbol=%v&interval=%v&apikey=demo", fromSymbol, toSymbol, interval), c)
+	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=%v&to_symbol=%v&interval=%v&apikey=%v", fromSymbol, toSymbol, interval, apiKey), c)
 }
