@@ -12,25 +12,28 @@ const (
 
 func TimeSeriesIntraDayInterval1minute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
-	return timeSeriesIntraDay(symbol, ONE_MINUTE, c)
+	return timeSeriesIntraDay(symbol, ONE_MINUTE, apiKey, c)
 }
 func TimeSeriesIntraDayInterval5minute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
-	return timeSeriesIntraDay(symbol, FIVE_MINUTE, c)
+	return timeSeriesIntraDay(symbol, FIVE_MINUTE, apiKey, c)
 }
 func TimeSeriesIntraDayIntervalFifteenMinute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
-	return timeSeriesIntraDay(symbol, FIFITHTEEN_MINUTE, c)
+	return timeSeriesIntraDay(symbol, FIFITHTEEN_MINUTE, apiKey, c)
 }
 func TimeSeriesIntraDayIntervalThirtyMinute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
-	return timeSeriesIntraDay(symbol, THIRTY_MINUTE, c)
+	return timeSeriesIntraDay(symbol, THIRTY_MINUTE, apiKey, c)
 }
 func TimeSeriesIntraDayIntervalSixtyMinute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
-	return timeSeriesIntraDay(symbol, SIXTY_MINUTE, c)
+	return timeSeriesIntraDay(symbol, SIXTY_MINUTE, apiKey, c)
 }
-func timeSeriesIntraDay(symbol string, interval string, c *Client) *AlphaVantageTimeSeriesApiResponse {
-
-	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=%v&interval%v&apikey=demo", symbol, interval), c)
+func timeSeriesIntraDay(symbol string, interval string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+	var result = new(AlphaVantageTimeSeriesApiResponse)
+	metadata, resultApi := makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=%v&interval%v&apikey=%v", symbol, interval, apiKey), c)
+	mapMetadata(metadata, result)
+	mapResultApi(resultApi, result)
+	return result
 }

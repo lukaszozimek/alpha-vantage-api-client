@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"time"
 )
 
 type Client struct {
@@ -15,17 +14,20 @@ type Client struct {
 	HttpClient *http.Client
 }
 type AlphaVantageTimeSeriesApiResponse struct {
-	Metadata Metadata `json:"Meta Data"`
-	Result   map[time.Time]Result
+	Metadata             Metadata             `json:"Meta Data"`
+	ResultWrapperWrapper ResultWrapperWrapper `json:"result,omitempty"`
 }
-
+type ResultWrapperWrapper struct {
+	Sprocket map[string]Result
+	Partial  bool `json:"partial,omitempty"`
+}
 type Metadata struct {
 	Information   string `json:"1. Information"`
 	Symbol        string `json:"2. Symbol"`
 	LastRefreshed string `json:"3. Last Refreshed"`
-	Interval      string `json:"4. Interval"`
 	OutputSize    string `json:"5. Output Size"`
 	TimeZone      string `json:"6. Time Zone"`
+	Interval      string `json:"4. Interval"`
 }
 
 type Result struct {
@@ -36,7 +38,7 @@ type Result struct {
 	Volume float32 `json:"5. volume"`
 }
 
-func makeApiCallGet(url string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func makeApiCallGet(url string, c *Client) (map[string]map[string]string, map[string]map[string]map[string]string) {
 
 	res, e := c.HttpClient.Get(url)
 	if e != nil {
@@ -46,17 +48,27 @@ func makeApiCallGet(url string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 	if err != nil {
 		panic(err.Error())
 	}
-	s, err := getData(body)
+	metadata, result, err := getData(body)
 	if err != nil {
 		panic(err.Error())
 	}
-	return s
+	return metadata, result
 }
-func getData(body []byte) (*AlphaVantageTimeSeriesApiResponse, error) {
-	var s = new(AlphaVantageTimeSeriesApiResponse)
-	err := json.Unmarshal(body, &s)
-	if err != nil {
+func getData(body []byte) (map[string]map[string]string, map[string]map[string]map[string]string, error) {
+	//this is Messy API...
+	var metadata map[string]map[string]string
+	var result map[string]map[string]map[string]string
+	err := json.Unmarshal(body, &metadata)
+	err1 := json.Unmarshal(body, &result)
+	if err != nil && err1 != nil {
 		fmt.Println("whoops:", err)
 	}
-	return s, err
+
+	return metadata, result, err
+}
+func mapMetadata(metadata map[string]map[string]string, response *AlphaVantageTimeSeriesApiResponse) {
+
+}
+func mapResultApi(result map[string]map[string]map[string]string, response *AlphaVantageTimeSeriesApiResponse) {
+
 }
