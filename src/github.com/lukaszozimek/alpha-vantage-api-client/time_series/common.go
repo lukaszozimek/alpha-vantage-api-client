@@ -61,7 +61,7 @@ func getData(body []byte) (*AlphaVantageTimeSeriesApiResponse, error) {
 	}
 	for key, val := range result {
 		if key == "Meta Data" {
-			mapMetada(val, transformedModel)
+			mapMetadata(val, transformedModel)
 		} else {
 			mapApiResult(val, transformedModel)
 		}
@@ -92,13 +92,13 @@ func mapApiResult(val interface{}, transformedModel *AlphaVantageTimeSeriesApiRe
 			if keyResult == "5. volume" {
 				result.Volume = resultValue.(string)
 			}
-			s = append(s, result)
 		}
+		s = append(s, result)
 	}
 	transformedModel.Result = s
 }
 
-func mapMetada(val interface{}, transformedModel *AlphaVantageTimeSeriesApiResponse) {
+func mapMetadata(val interface{}, transformedModel *AlphaVantageTimeSeriesApiResponse) {
 	for nestedKey, nestedVal := range val.(map[string]interface{}) {
 
 		if nestedKey == "1. Information" {
