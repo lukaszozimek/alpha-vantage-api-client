@@ -14,12 +14,8 @@ type Client struct {
 	HttpClient *http.Client
 }
 type AlphaVantageTimeSeriesApiResponse struct {
-	Metadata             Metadata             `json:"Meta Data"`
-	ResultWrapperWrapper ResultWrapperWrapper `json:"result,omitempty"`
-}
-type ResultWrapperWrapper struct {
-	Sprocket map[string]Result
-	Partial  bool `json:"partial,omitempty"`
+	Metadata Metadata `json:"Meta Data"`
+	Result   []Result
 }
 type Metadata struct {
 	Information   string `json:"1. Information"`
@@ -31,14 +27,15 @@ type Metadata struct {
 }
 
 type Result struct {
-	Open   float32 `json:"1. open"`
-	High   float32 `json:"2. high"`
-	Low    float32 `json:"3. low"`
-	Close  float32 `json:"4. close"`
-	Volume float32 `json:"5. volume"`
+	Date   string
+	Open   string `json:"1. open"`
+	High   string `json:"2. high"`
+	Low    string `json:"3. low"`
+	Close  string `json:"4. close"`
+	Volume string `json:"5. volume"`
 }
 
-func makeApiCallGet(url string, c *Client) (map[string]map[string]string, map[string]map[string]map[string]string) {
+func makeApiCallGet(url string, c *Client) *AlphaVantageTimeSeriesApiResponse {
 
 	res, e := c.HttpClient.Get(url)
 	if e != nil {
@@ -48,27 +45,86 @@ func makeApiCallGet(url string, c *Client) (map[string]map[string]string, map[st
 	if err != nil {
 		panic(err.Error())
 	}
-	metadata, result, err := getData(body)
+	metadata, err := getData(body)
 	if err != nil {
 		panic(err.Error())
 	}
-	return metadata, result
+	return metadata
 }
-func getData(body []byte) (map[string]map[string]string, map[string]map[string]map[string]string, error) {
+func getData(body []byte) (*AlphaVantageTimeSeriesApiResponse, error) {
+	var transformedModel = new(AlphaVantageTimeSeriesApiResponse)
 	//this is Messy API...
-	var metadata map[string]map[string]string
-	var result map[string]map[string]map[string]string
-	err := json.Unmarshal(body, &metadata)
-	err1 := json.Unmarshal(body, &result)
-	if err != nil && err1 != nil {
+	var result map[string]interface{}
+	err := json.Unmarshal(body, &result)
+	if err != nil {
 		fmt.Println("whoops:", err)
 	}
+	for key, val := range result {
+		if key == "Meta Data" {
+			mapMetada(val, transformedModel)
+		} else {
+			mapApiResult(val, transformedModel)
+		}
 
-	return metadata, result, err
+	}
+	return transformedModel, nil
 }
-func mapMetadata(metadata map[string]map[string]string, response *AlphaVantageTimeSeriesApiResponse) {
 
+func mapApiResult(val interface{}, transformedModel *AlphaVantageTimeSeriesApiResponse) {
+	var s []Result
+	for nestedKey, nestedVal := range val.(map[string]interface{}) {
+		var result Result
+		result.Date = nestedKey
+		for keyResult, resultValue := range nestedVal.(map[string]interface{}) {
+
+			if keyResult == "1. open" {
+				result.Open = resultValue.(string)
+			}
+			if keyResult == "2. high" {
+				result.High = resultValue.(string)
+			}
+			if keyResult == "3. low" {
+				result.Low = resultValue.(string)
+			}
+			if keyResult == "4. close" {
+				result.Close = resultValue.(string)
+			}
+			if keyResult == "5. volume" {
+				result.Volume = resultValue.(string)
+			}
+			s = append(s, result)
+		}
+	}
+	transformedModel.Result = s
 }
-func mapResultApi(result map[string]map[string]map[string]string, response *AlphaVantageTimeSeriesApiResponse) {
 
+func mapMetada(val interface{}, transformedModel *AlphaVantageTimeSeriesApiResponse) {
+	for nestedKey, nestedVal := range val.(map[string]interface{}) {
+
+		if nestedKey == "1. Information" {
+			transformedModel.Metadata.Information = nestedVal.(string)
+		}
+		if nestedKey == "2. Symbol" {
+			transformedModel.Metadata.Symbol = nestedVal.(string)
+		}
+		if nestedKey == "3. Last Refreshed" {
+			transformedModel.Metadata.LastRefreshed = nestedVal.(string)
+		}
+		if nestedKey == "4. Output Size" {
+			transformedModel.Metadata.OutputSize = nestedVal.(string)
+		}
+		if nestedKey == "5. Time Zone" {
+			transformedModel.Metadata.TimeZone = nestedVal.(string)
+		}
+		if nestedKey == "5. Output Size" {
+			transformedModel.Metadata.OutputSize = nestedVal.(string)
+		}
+		if nestedKey == "6. Time Zone" {
+			transformedModel.Metadata.TimeZone = nestedVal.(string)
+		}
+		if nestedKey == "4. Interval" {
+			transformedModel.Metadata.Interval = nestedVal.(string)
+		}
+
+	}
 }
