@@ -1,4 +1,4 @@
-package cryptocurrency
+package cryptocurrency_test
 
 import "fmt"
 
