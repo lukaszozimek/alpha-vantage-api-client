@@ -6,11 +6,11 @@ import (
 	"io/ioutil"
 )
 
-func FxRealTimeCall(fromCurrency string, toCurrency string, apiKey string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
+func FxRealTimeCall(fromCurrency string, toCurrency string, apiKey string, c *Client) *ExchangeRateResult {
 
 	return makeApiCallGetRealTime(fmt.Sprintf("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=%v&to_currency=%v&apikey=%v", fromCurrency, toCurrency, apiKey), c)
 }
-func makeApiCallGetRealTime(url string, c *Client) *AlphaVantageRealTimeCurrencyExchange {
+func makeApiCallGetRealTime(url string, c *Client) *ExchangeRateResult {
 
 	res, e := c.HttpClient.Get(url)
 	if e != nil {
@@ -26,8 +26,8 @@ func makeApiCallGetRealTime(url string, c *Client) *AlphaVantageRealTimeCurrency
 	}
 	return s
 }
-func getDataRealTime(body []byte) (*AlphaVantageRealTimeCurrencyExchange, error) {
-	var s = new(AlphaVantageRealTimeCurrencyExchange)
+func getDataRealTime(body []byte) (*ExchangeRateResult, error) {
+	var s = new(ExchangeRateResult)
 	err := json.Unmarshal(body, &s)
 	if err != nil {
 		fmt.Println("whoops:", err)

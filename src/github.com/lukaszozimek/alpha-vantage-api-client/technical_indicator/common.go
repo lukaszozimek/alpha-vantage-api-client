@@ -16,7 +16,7 @@ type Client struct {
 
 type AlphaVantageTechnicalIndicatorResponse struct {
 	Metadata AlphaVantageTechnicalIndicatorMetadata `json:"Metadata"`
-	Result   map[string]interface{}
+	Result   []*Result
 }
 type AlphaVantageTechnicalIndicatorMetadata struct {
 	Symbol        string `json:"1: Symbol"`
@@ -29,7 +29,9 @@ type AlphaVantageTechnicalIndicatorMetadata struct {
 }
 
 type Result struct {
-	value string
+	Value     string
+	Indicator string
+	Date      string
 }
 
 const (
@@ -64,10 +66,61 @@ func makeApiCallGet(url string, c *Client) *AlphaVantageTechnicalIndicatorRespon
 	return s
 }
 func getData(body []byte) (*AlphaVantageTechnicalIndicatorResponse, error) {
-	var s = new(AlphaVantageTechnicalIndicatorResponse)
-	err := json.Unmarshal(body, &s)
+	var transformedModel = new(AlphaVantageTechnicalIndicatorResponse)
+	//this is Messy API...
+	var result map[string]interface{}
+	err := json.Unmarshal(body, &result)
 	if err != nil {
 		fmt.Println("whoops:", err)
 	}
-	return s, err
+	for key, val := range result {
+		if key == "Meta Data" {
+			mapMetadataAlphaVantageIntraExchangeRate(val, transformedModel)
+		} else {
+			mapAdiResultMetadataAlphaVantageIntraExchangeRate(val, transformedModel)
+		}
+
+	}
+	return transformedModel, nil
+}
+
+func mapMetadataAlphaVantageIntraExchangeRate(val interface{}, transformedModel *AlphaVantageTechnicalIndicatorResponse) {
+	for nestedKey, nestedVal := range val.(map[string]interface{}) {
+		if nestedKey == "1: Symbol" {
+			transformedModel.Metadata.Symbol = nestedVal.(string)
+		}
+		if nestedKey == "2: Indicator" {
+			transformedModel.Metadata.Indicator = nestedVal.(string)
+		}
+		if nestedKey == "3: Last Refreshed" {
+			transformedModel.Metadata.LastRefreshed = nestedVal.(string)
+		}
+		if nestedKey == "4: Interval" {
+			transformedModel.Metadata.Interval = nestedVal.(string)
+		}
+		if nestedKey == "5: Time Period" {
+			transformedModel.Metadata.TimePeriod = nestedVal.(string)
+		}
+		if nestedKey == "6: Series Type" {
+			transformedModel.Metadata.SeriesType = nestedVal.(string)
+		}
+		if nestedKey == "7: Time Zone" {
+			transformedModel.Metadata.TimeZone = nestedVal.(string)
+		}
+
+	}
+}
+func mapAdiResultMetadataAlphaVantageIntraExchangeRate(val interface{}, transformedModel *AlphaVantageTechnicalIndicatorResponse) {
+	var s []*Result
+	for nestedKey, nestedVal := range val.(map[string]interface{}) {
+		var result = new(Result)
+		result.Date = nestedKey
+		for keyResult, resultValue := range nestedVal.(map[string]interface{}) {
+			result.Indicator = keyResult
+			result.Value = resultValue.(string)
+
+		}
+		s = append(s, result)
+	}
+	transformedModel.Result = s
 }
