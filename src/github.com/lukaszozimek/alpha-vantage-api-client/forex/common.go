@@ -43,6 +43,17 @@ type Metadata struct {
 	OutputSize    string `json:"6. Output Size"`
 	TimeZone      string `json:"7. Time Zone"`
 }
+
+func (c Metadata) String() string {
+	return fmt.Sprintf("{Information:\"%v\", FromSymbol:\"%v\", ToSymbol:\"%v\", LastRefreshed:\"%v\", Interval:\"%v\", OutputSize:\"%v\", TimeZone:\"%v\"}", c.Information,
+		c.FromSymbol,
+		c.ToSymbol,
+		c.LastRefreshed,
+		c.Interval,
+		c.OutputSize,
+		c.TimeZone)
+}
+
 type Result struct {
 	Date   string
 	Open   string `json:"1. open"`

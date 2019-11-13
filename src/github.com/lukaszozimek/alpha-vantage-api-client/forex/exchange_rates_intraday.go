@@ -32,5 +32,5 @@ func TimeSeriesIntraDayIntervalSixtyMinute(fromSymbol string, toSymbol string, a
 }
 func timeSeriesIntraDay(fromSymbol string, toSymbol string, interval string, apiKey string, c *Client) *AlphaVantageIntervalExchangeRate {
 
-	return makeApiCallGet(fmt.Sprintf("https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=%v&to_symbol=%v&interval=%v&apikey=%v", fromSymbol, toSymbol, interval, apiKey), c)
+	return makeApiCallGet(fmt.Sprintf(c.BaseURL.String()+"/query?function=FX_INTRADAY&from_symbol=%v&to_symbol=%v&interval=%v&apikey=%v", fromSymbol, toSymbol, interval, apiKey), c)
 }
