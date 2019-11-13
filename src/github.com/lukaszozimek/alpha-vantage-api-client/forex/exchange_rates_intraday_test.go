@@ -29,3 +29,60 @@ func TestTimeSeriesIntraDayIntervalFifteenMinute(t *testing.T) {
 	item := forex.TimeSeriesIntraDayIntervalFifteenMinute("EUR", "PLN", "deomo", c)
 	assert.Equal(t, "{Information:\"\", FromSymbol:\"\", ToSymbol:\"\", LastRefreshed:\"\", Interval:\"\", OutputSize:\"\", TimeZone:\"\"}", item.Metadata.String())
 }
+
+func TestTimeSeriesIntraDayIntervalSixtyMinute(t *testing.T) {
+	var DefaultClient = &http.Client{}
+	result, _ := url.Parse("https://www.alphavantage.co")
+	var c = &forex.Client{BaseURL: result, HttpClient: DefaultClient}
+	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		assert.Equal(t, "https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=PLN&interval=60min&apikey=deomo", r.URL.String())
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Body:       ioutil.NopCloser(strings.NewReader(`{}`)),
+		}, nil
+	})
+	item := forex.TimeSeriesIntraDayIntervalSixtyMinute("EUR", "PLN", "deomo", c)
+	assert.Equal(t, "{Information:\"\", FromSymbol:\"\", ToSymbol:\"\", LastRefreshed:\"\", Interval:\"\", OutputSize:\"\", TimeZone:\"\"}", item.Metadata.String())
+}
+func TestTimeSeriesIntraDayIntervalThirtyMinute(t *testing.T) {
+	var DefaultClient = &http.Client{}
+	result, _ := url.Parse("https://www.alphavantage.co")
+	var c = &forex.Client{BaseURL: result, HttpClient: DefaultClient}
+	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		assert.Equal(t, "https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=PLN&interval=30min&apikey=deomo", r.URL.String())
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Body:       ioutil.NopCloser(strings.NewReader(`{}`)),
+		}, nil
+	})
+	item := forex.TimeSeriesIntraDayIntervalSixtyMinute("EUR", "PLN", "deomo", c)
+	assert.Equal(t, "{Information:\"\", FromSymbol:\"\", ToSymbol:\"\", LastRefreshed:\"\", Interval:\"\", OutputSize:\"\", TimeZone:\"\"}", item.Metadata.String())
+}
+func TestTimeSeriesIntraDayInterval5minute(t *testing.T) {
+	var DefaultClient = &http.Client{}
+	result, _ := url.Parse("https://www.alphavantage.co")
+	var c = &forex.Client{BaseURL: result, HttpClient: DefaultClient}
+	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		assert.Equal(t, "https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=PLN&interval=5min&apikey=deomo", r.URL.String())
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Body:       ioutil.NopCloser(strings.NewReader(`{}`)),
+		}, nil
+	})
+	item := forex.TimeSeriesIntraDayInterval5minute("EUR", "PLN", "deomo", c)
+	assert.Equal(t, "{Information:\"\", FromSymbol:\"\", ToSymbol:\"\", LastRefreshed:\"\", Interval:\"\", OutputSize:\"\", TimeZone:\"\"}", item.Metadata.String())
+}
+func TestTimeSeriesIntraDayInterval1minute(t *testing.T) {
+	var DefaultClient = &http.Client{}
+	result, _ := url.Parse("https://www.alphavantage.co")
+	var c = &forex.Client{BaseURL: result, HttpClient: DefaultClient}
+	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		assert.Equal(t, "https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=PLN&interval=1min&apikey=deomo", r.URL.String())
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Body:       ioutil.NopCloser(strings.NewReader(`{}`)),
+		}, nil
+	})
+	item := forex.TimeSeriesIntraDayInterval1minute("EUR", "PLN", "deomo", c)
+	assert.Equal(t, "{Information:\"\", FromSymbol:\"\", ToSymbol:\"\", LastRefreshed:\"\", Interval:\"\", OutputSize:\"\", TimeZone:\"\"}", item.Metadata.String())
+}
