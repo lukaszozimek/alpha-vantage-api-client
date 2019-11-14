@@ -10,11 +10,6 @@ import (
 	"testing"
 )
 
-type roundTripFunc func(r *http.Request) (*http.Response, error)
-
-func (s roundTripFunc) RoundTrip(r *http.Request) (*http.Response, error) {
-	return s(r)
-}
 func TestTimeSeriesIntraDayIntervalFifteenMinute(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
