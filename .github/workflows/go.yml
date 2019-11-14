@@ -25,4 +25,4 @@ jobs:
           fi
 
       - name: Build ExchangeRate
-        run:  cd forex && go build -v .
+        run:  cd forex && go build -v . && go test -run ''
