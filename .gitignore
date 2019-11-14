@@ -16,3 +16,5 @@
 # User-specific stuff
 .idea/
 *.iml
+/src
+/pkg
