@@ -29,15 +29,16 @@ jobs:
       - name: Test Exchange Rate
         run:  cd forex && go test -run ''
 
-      - name: Build Cryptocurrency
-        run:  cd cryptocurrency && go build -v .
-      - name: Test Cryptocurrency
-        run:  cd cryptocurrency && go test -run ''
 
       - name: Build Technical Indicator
         run:  cd technical_indicator && go build -v .
       - name: Test Technical Indicator
         run:  cd technical_indicator && go test -run ''
+
+      - name: Build Cryptocurrency
+        run:  cd cryptocurrency && go build -v .
+      - name: Test Cryptocurrency
+        run:  cd cryptocurrency && go test -run ''
 
       - name: Build Time Series
         run:  cd time_series && go build -v .
