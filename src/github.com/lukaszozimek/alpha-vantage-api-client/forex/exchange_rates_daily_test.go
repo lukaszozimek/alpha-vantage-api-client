@@ -15,12 +15,12 @@ func TestTimeSeriesDaily(t *testing.T) {
 	result, _ := url.Parse("https://www.alphavantage.co")
 	var c = &forex.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
-		assert.Equal(t, "https://www.alphavantage.co/query?function=FX_DAILY&from_symbol=PLN&to_symbol=EUR&apikey=demo", r.URL.String())
+		assert.Equal(t, "https://www.alphavantage.co/query?function=FX_DAILY&from_symbol=EUR&to_symbol=PLN&apikey=deomo", r.URL.String())
 		return &http.Response{
 			StatusCode: http.StatusOK,
 			Body:       ioutil.NopCloser(strings.NewReader(`{}`)),
 		}, nil
 	})
-	item := forex.TestTimeSeriesDaily("EUR", "PLN", "deomo", c)
+	item := forex.TimeSeriesDaily("EUR", "PLN", "deomo", c)
 	assert.Equal(t, "{Information:\"\", FromSymbol:\"\", ToSymbol:\"\", LastRefreshed:\"\", Interval:\"\", OutputSize:\"\", TimeZone:\"\"}", item.Metadata.String())
 }

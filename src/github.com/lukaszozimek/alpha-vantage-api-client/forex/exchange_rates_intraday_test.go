@@ -50,9 +50,10 @@ func TestTimeSeriesIntraDayIntervalThirtyMinute(t *testing.T) {
 			Body:       ioutil.NopCloser(strings.NewReader(`{}`)),
 		}, nil
 	})
-	item := forex.TimeSeriesIntraDayIntervalSixtyMinute("EUR", "PLN", "deomo", c)
+	item := forex.TimeSeriesIntraDayIntervalThirtyMinute("EUR", "PLN", "deomo", c)
 	assert.Equal(t, "{Information:\"\", FromSymbol:\"\", ToSymbol:\"\", LastRefreshed:\"\", Interval:\"\", OutputSize:\"\", TimeZone:\"\"}", item.Metadata.String())
 }
+
 func TestTimeSeriesIntraDayInterval5minute(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
@@ -67,6 +68,7 @@ func TestTimeSeriesIntraDayInterval5minute(t *testing.T) {
 	item := forex.TimeSeriesIntraDayInterval5minute("EUR", "PLN", "deomo", c)
 	assert.Equal(t, "{Information:\"\", FromSymbol:\"\", ToSymbol:\"\", LastRefreshed:\"\", Interval:\"\", OutputSize:\"\", TimeZone:\"\"}", item.Metadata.String())
 }
+
 func TestTimeSeriesIntraDayInterval1minute(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
