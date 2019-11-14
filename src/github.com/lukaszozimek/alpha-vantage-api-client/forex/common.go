@@ -21,6 +21,15 @@ type RealTimeCurrencyExchangeMetadata struct {
 	TimeZone      string
 }
 
+func (c RealTimeCurrencyExchangeMetadata) String() string {
+	return fmt.Sprintf("{Information:\"%v\", Symbol:\"%v\",  LastRefreshed:\"%v\",  OutputSize:\"%v\", TimeZone:\"%v\"}",
+		c.Information,
+		c.Symbol,
+		c.LastRefreshed,
+		c.OutputSize,
+		c.TimeZone)
+}
+
 type AlphaVantageRealTimeCurrencyExchange struct {
 	Result   []Result
 	Metadata RealTimeCurrencyExchangeMetadata
