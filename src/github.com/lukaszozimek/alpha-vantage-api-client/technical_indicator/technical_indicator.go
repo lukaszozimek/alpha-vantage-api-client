@@ -130,7 +130,7 @@ func GetCMOReport(symbol string, interval string, timePeriod string, seriesType 
 }
 func GetROCReport(symbol string, interval string, timePeriod string, seriesType string, apiKey string, c *Client) *AlphaVantageTechnicalIndicatorResponse {
 
-	return makeApiCallGet(fmt.Sprintf(c.BaseURL.String()+"/query?function=%v&symbol=%v&interval=%v&time_period=%v&series_type=%v&apikey=%v", HT_DCPHASE, symbol, interval, timePeriod, seriesType, apiKey), c)
+	return makeApiCallGet(fmt.Sprintf(c.BaseURL.String()+"/query?function=%v&symbol=%v&interval=%v&time_period=%v&series_type=%v&apikey=%v", ROC, symbol, interval, timePeriod, seriesType, apiKey), c)
 
 }
 func GetROCRReport(symbol string, interval string, timePeriod string, seriesType string, apiKey string, c *Client) *AlphaVantageTechnicalIndicatorResponse {

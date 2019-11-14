@@ -28,6 +28,17 @@ type AlphaVantageTechnicalIndicatorMetadata struct {
 	TimeZone      string `json:"7: Time Zone"`
 }
 
+func (c AlphaVantageTechnicalIndicatorMetadata) String() string {
+	return fmt.Sprintf("{Symbol:\"%v\", Indicator:\"%v\",  LastRefreshed:\"%v\",  Interval:\"%v\", TimePeriod:\"%v\", SeriesType:\"%v\", TimeZone:\"%v\"}",
+		c.Symbol,
+		c.Indicator,
+		c.LastRefreshed,
+		c.Interval,
+		c.TimePeriod,
+		c.SeriesType,
+		c.TimeZone)
+}
+
 type Result struct {
 	Value     string
 	Indicator string
