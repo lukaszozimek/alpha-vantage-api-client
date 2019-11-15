@@ -45,6 +45,18 @@ type Metadata struct {
 	LastRefreshed       string //"6.Last Refreshed ": "2019-11-11 00:00:00",
 	TimeZone            string //"7.Time Zone": "UTC"
 }
+
+func (c Metadata) String() string {
+	return fmt.Sprintf("{Information:\"%v\", DigitalCurrencyCode:\"%v\", DigitalCurrencyName:\"%v\", MarketCode:\"%v\", MarketName:\"%v\", LastRefreshed:\"%v\", TimeZone:\"%v\"}",
+		c.Information,
+		c.DigitalCurrencyCode,
+		c.DigitalCurrencyName,
+		c.MarketCode,
+		c.MarketName,
+		c.LastRefreshed,
+		c.TimeZone)
+}
+
 type Result struct {
 	Date           string
 	OpenCurrencyA  string //"1a. open (CNY)": "63933.00301200",
