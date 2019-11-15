@@ -43,5 +43,6 @@ jobs:
 
       - name: Build Time Series
         run:  cd time_series && go build -v .
+
       - name: Test Time Series
         run:  cd time_series && go test -run ''
