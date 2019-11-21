@@ -3,14 +3,15 @@ package crypto
 import (
 	"encoding/json"
 	"fmt"
+	common "github.com/lukaszozimek/alpha-vantage-api-client"
 	"io/ioutil"
 )
 
-func FxRealTimeCall(fromCurrency string, toCurrency string, apiKey string, c *Client) *ExchangeRateResult {
+func FxRealTimeCall(fromCurrency string, toCurrency string, apiKey string, c *common.Client) *ExchangeRateResult {
 
 	return makeApiCallGetRealTime(fmt.Sprintf("https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=%v&to_currency=%v&apikey=%v", fromCurrency, toCurrency, apiKey), c)
 }
-func makeApiCallGetRealTime(url string, c *Client) *ExchangeRateResult {
+func makeApiCallGetRealTime(url string, c *common.Client) *ExchangeRateResult {
 
 	res, e := c.HttpClient.Get(url)
 	if e != nil {

@@ -1,6 +1,7 @@
 package technical_indicator_test
 
 import (
+	common "github.com/lukaszozimek/alpha-vantage-api-client"
 	"github.com/lukaszozimek/alpha-vantage-api-client/technical_indicator"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
@@ -13,7 +14,7 @@ import (
 func TestGetSMAReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.coquery?function=SMA&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -28,7 +29,7 @@ func TestGetSMAReport(t *testing.T) {
 func TestGetEMAReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=EMA&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -42,7 +43,7 @@ func TestGetEMAReport(t *testing.T) {
 func TestGetWMAReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=WMA&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -56,7 +57,7 @@ func TestGetWMAReport(t *testing.T) {
 func TestGetDEMAReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=DEMA&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -70,7 +71,7 @@ func TestGetDEMAReport(t *testing.T) {
 func TestGetTEMAReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TEMA&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -84,7 +85,7 @@ func TestGetTEMAReport(t *testing.T) {
 func TestGetTRIMAReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TRIMA&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -98,7 +99,7 @@ func TestGetTRIMAReport(t *testing.T) {
 func TestGetKAMAReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=KAMA&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -112,7 +113,7 @@ func TestGetKAMAReport(t *testing.T) {
 func TestGetMAMAReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=MAMA&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -126,7 +127,7 @@ func TestGetMAMAReport(t *testing.T) {
 func TestGetVWAPReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=VWAP&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -140,7 +141,7 @@ func TestGetVWAPReport(t *testing.T) {
 func TestGetT3Report(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=T3&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -154,7 +155,7 @@ func TestGetT3Report(t *testing.T) {
 func TestGetMACDReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=MACD&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -168,7 +169,7 @@ func TestGetMACDReport(t *testing.T) {
 func TestGetMACDEXTReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=MACDEXT&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -182,7 +183,7 @@ func TestGetMACDEXTReport(t *testing.T) {
 func TestGetSTOCHReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=STOCH&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -196,7 +197,7 @@ func TestGetSTOCHReport(t *testing.T) {
 func TestGetSTOCHFReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=STOCHF&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -210,7 +211,7 @@ func TestGetSTOCHFReport(t *testing.T) {
 func TestGetRSIReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=RSI&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -224,7 +225,7 @@ func TestGetRSIReport(t *testing.T) {
 func TestGetSTOCHRSIReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=STOCHRSI&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -238,7 +239,7 @@ func TestGetSTOCHRSIReport(t *testing.T) {
 func TestGetWILLRReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=WILLR&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -252,7 +253,7 @@ func TestGetWILLRReport(t *testing.T) {
 func TestGetADXReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=ADX&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -266,7 +267,7 @@ func TestGetADXReport(t *testing.T) {
 func TestGetADXRReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=ADXR&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -280,7 +281,7 @@ func TestGetADXRReport(t *testing.T) {
 func TestGetAPOReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=APO&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -294,7 +295,7 @@ func TestGetAPOReport(t *testing.T) {
 func TestGetPPOReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=PPO&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -308,7 +309,7 @@ func TestGetPPOReport(t *testing.T) {
 func TestGetMOMReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=MOM&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -322,7 +323,7 @@ func TestGetMOMReport(t *testing.T) {
 func TestGetBOPReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=BOP&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -336,7 +337,7 @@ func TestGetBOPReport(t *testing.T) {
 func TestGetCCIReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=CCI&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -350,7 +351,7 @@ func TestGetCCIReport(t *testing.T) {
 func TestGetCMOReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=CMO&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -364,7 +365,7 @@ func TestGetCMOReport(t *testing.T) {
 func TestGetROCReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=ROC&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -378,7 +379,7 @@ func TestGetROCReport(t *testing.T) {
 func TestGetROCRReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=ROCR&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -392,7 +393,7 @@ func TestGetROCRReport(t *testing.T) {
 func TestGetAROONReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=AROON&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -406,7 +407,7 @@ func TestGetAROONReport(t *testing.T) {
 func TestGetAROONOSCReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=AROONOSC&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -420,7 +421,7 @@ func TestGetAROONOSCReport(t *testing.T) {
 func TestGetMFIReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=MFI&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -434,7 +435,7 @@ func TestGetMFIReport(t *testing.T) {
 func TestGetTRIXReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TRIX&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -448,7 +449,7 @@ func TestGetTRIXReport(t *testing.T) {
 func TestGetULTOSCReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=ULTOSC&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -462,7 +463,7 @@ func TestGetULTOSCReport(t *testing.T) {
 func TestGetDXReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=DX&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -476,7 +477,7 @@ func TestGetDXReport(t *testing.T) {
 func TestGetminusDireport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=MINUS_DI&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -490,7 +491,7 @@ func TestGetminusDireport(t *testing.T) {
 func TestGetplusDireport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=PLUS_DI&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -504,7 +505,7 @@ func TestGetplusDireport(t *testing.T) {
 func TestGetminusDmreport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=MINUS_DM&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -518,7 +519,7 @@ func TestGetminusDmreport(t *testing.T) {
 func TestGetplusDmreport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=PLUS_DM&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -532,7 +533,7 @@ func TestGetplusDmreport(t *testing.T) {
 func TestGetBBANDSReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=BBANDS&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -546,7 +547,7 @@ func TestGetBBANDSReport(t *testing.T) {
 func TestGetMIDPOINTReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=MIDPOINT&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -560,7 +561,7 @@ func TestGetMIDPOINTReport(t *testing.T) {
 func TestGetMIDPRICEReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=MIDPRICE&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -574,7 +575,7 @@ func TestGetMIDPRICEReport(t *testing.T) {
 func TestGetSARReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=SAR&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -588,7 +589,7 @@ func TestGetSARReport(t *testing.T) {
 func TestGetTRANGEReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TRANGE&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -602,7 +603,7 @@ func TestGetTRANGEReport(t *testing.T) {
 func TestGetATRReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=ATR&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -616,7 +617,7 @@ func TestGetATRReport(t *testing.T) {
 func TestGetNATRReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=NATR&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -630,7 +631,7 @@ func TestGetNATRReport(t *testing.T) {
 func TestGetADReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=AD&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -644,7 +645,7 @@ func TestGetADReport(t *testing.T) {
 func TestGetADOSCReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=ADOSC&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -658,7 +659,7 @@ func TestGetADOSCReport(t *testing.T) {
 func TestGetOBVReport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=OBV&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -672,7 +673,7 @@ func TestGetOBVReport(t *testing.T) {
 func TestGethtTrendlinereport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=HT_TRENDLINE&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -686,7 +687,7 @@ func TestGethtTrendlinereport(t *testing.T) {
 func TestGethtSinereport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=HT_SINE&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -700,7 +701,7 @@ func TestGethtSinereport(t *testing.T) {
 func TestGethtTrendmodereport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=HT_TRENDMODE&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -714,7 +715,7 @@ func TestGethtTrendmodereport(t *testing.T) {
 func TestGethtDcperiodreport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=HT_DCPERIOD&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -728,7 +729,7 @@ func TestGethtDcperiodreport(t *testing.T) {
 func TestGethtDcphasereport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=HT_DCPHASE&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -742,7 +743,7 @@ func TestGethtDcphasereport(t *testing.T) {
 func TestGethtPhasorreport(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &technical_indicator.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=HT_PHASOR&symbol=EUR&interval=1min&time_period=60&series_type=open&apikey=deomo", r.URL.String())
 		return &http.Response{

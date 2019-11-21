@@ -1,7 +1,9 @@
 package time_series_test
 
 import (
+	common "github.com/lukaszozimek/alpha-vantage-api-client"
 	"github.com/lukaszozimek/alpha-vantage-api-client/time_series"
+
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
@@ -13,7 +15,7 @@ import (
 func TestTimeSeriesDaily(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &time_series.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=EUR&apikey=deomo", r.URL.String())
 		return &http.Response{

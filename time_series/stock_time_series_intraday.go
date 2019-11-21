@@ -1,6 +1,9 @@
 package time_series
 
-import "fmt"
+import (
+	"fmt"
+	common "github.com/lukaszozimek/alpha-vantage-api-client"
+)
 
 const (
 	ONE_MINUTE        = "1min"
@@ -10,27 +13,27 @@ const (
 	SIXTY_MINUTE      = "60min"
 )
 
-func TimeSeriesIntraDayInterval1minute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayInterval1minute(symbol string, apiKey string, c *common.Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, ONE_MINUTE, apiKey, c)
 }
-func TimeSeriesIntraDayInterval5minute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayInterval5minute(symbol string, apiKey string, c *common.Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, FIVE_MINUTE, apiKey, c)
 }
-func TimeSeriesIntraDayIntervalFifteenMinute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayIntervalFifteenMinute(symbol string, apiKey string, c *common.Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, FIFITHTEEN_MINUTE, apiKey, c)
 }
-func TimeSeriesIntraDayIntervalThirtyMinute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayIntervalThirtyMinute(symbol string, apiKey string, c *common.Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, THIRTY_MINUTE, apiKey, c)
 }
-func TimeSeriesIntraDayIntervalSixtyMinute(symbol string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func TimeSeriesIntraDayIntervalSixtyMinute(symbol string, apiKey string, c *common.Client) *AlphaVantageTimeSeriesApiResponse {
 
 	return timeSeriesIntraDay(symbol, SIXTY_MINUTE, apiKey, c)
 }
-func timeSeriesIntraDay(symbol string, interval string, apiKey string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func timeSeriesIntraDay(symbol string, interval string, apiKey string, c *common.Client) *AlphaVantageTimeSeriesApiResponse {
 	return makeApiCallGet(fmt.Sprintf(c.BaseURL.String()+"/query?function=TIME_SERIES_INTRADAY&symbol=%v&interval=%v&apikey=%v", symbol, interval, apiKey), c)
 
 }

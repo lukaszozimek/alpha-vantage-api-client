@@ -3,17 +3,11 @@ package crypto
 import (
 	"encoding/json"
 	"fmt"
+	common "github.com/lukaszozimek/alpha-vantage-api-client"
 	"io/ioutil"
-	"net/http"
-	"net/url"
 	"strings"
 )
 
-type Client struct {
-	BaseURL    *url.URL
-	UserAgent  string
-	HttpClient *http.Client
-}
 type AlphaVantageRealTimeCurrencyExchange struct {
 	ExchangeRateResult ExchangeRateResult
 }
@@ -71,7 +65,7 @@ type Result struct {
 	MarketCap      string //"6. market cap (USD)": "396312.86658300"
 }
 
-func makeApiCallGet(url string, c *Client) *AlphaVantageCryptoExchangeRate {
+func makeApiCallGet(url string, c *common.Client) *AlphaVantageCryptoExchangeRate {
 
 	res, e := c.HttpClient.Get(url)
 	if e != nil {

@@ -3,16 +3,10 @@ package time_series
 import (
 	"encoding/json"
 	"fmt"
+	common "github.com/lukaszozimek/alpha-vantage-api-client"
 	"io/ioutil"
-	"net/http"
-	"net/url"
 )
 
-type Client struct {
-	BaseURL    *url.URL
-	UserAgent  string
-	HttpClient *http.Client
-}
 type AlphaVantageTimeSeriesApiResponse struct {
 	Metadata Metadata `json:"Meta Data"`
 	Result   []Result
@@ -45,7 +39,7 @@ type Result struct {
 	Volume string `json:"5. volume"`
 }
 
-func makeApiCallGet(url string, c *Client) *AlphaVantageTimeSeriesApiResponse {
+func makeApiCallGet(url string, c *common.Client) *AlphaVantageTimeSeriesApiResponse {
 
 	res, e := c.HttpClient.Get(url)
 	if e != nil {

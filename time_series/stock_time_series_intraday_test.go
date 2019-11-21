@@ -1,6 +1,8 @@
 package time_series_test
 
 import (
+	common "github.com/lukaszozimek/alpha-vantage-api-client"
+
 	"github.com/lukaszozimek/alpha-vantage-api-client/time_series"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
@@ -13,7 +15,7 @@ import (
 func TestTimeSeriesIntraDayInterval1minute(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &time_series.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=EUR&interval=1min&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -28,7 +30,7 @@ func TestTimeSeriesIntraDayInterval1minute(t *testing.T) {
 func TestTimeSeriesIntraDayInterval5minute(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &time_series.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=EUR&interval=5min&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -43,7 +45,7 @@ func TestTimeSeriesIntraDayInterval5minute(t *testing.T) {
 func TestTimeSeriesIntraDayIntervalFifteenMinute(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &time_series.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=EUR&interval=15min&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -57,7 +59,7 @@ func TestTimeSeriesIntraDayIntervalFifteenMinute(t *testing.T) {
 func TestTimeSeriesIntraDayIntervalThirtyMinute(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &time_series.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=EUR&interval=30min&apikey=deomo", r.URL.String())
 		return &http.Response{
@@ -71,7 +73,7 @@ func TestTimeSeriesIntraDayIntervalThirtyMinute(t *testing.T) {
 func TestTimeSeriesIntraDayIntervalSixtyMinute(t *testing.T) {
 	var DefaultClient = &http.Client{}
 	result, _ := url.Parse("https://www.alphavantage.co")
-	var c = &time_series.Client{BaseURL: result, HttpClient: DefaultClient}
+	var c = &common.Client{BaseURL: result, HttpClient: DefaultClient}
 	c.HttpClient.Transport = roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		assert.Equal(t, "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=EUR&interval=60min&apikey=deomo", r.URL.String())
 		return &http.Response{

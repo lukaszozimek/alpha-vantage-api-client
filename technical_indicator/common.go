@@ -3,16 +3,9 @@ package technical_indicator
 import (
 	"encoding/json"
 	"fmt"
+	common "github.com/lukaszozimek/alpha-vantage-api-client"
 	"io/ioutil"
-	"net/http"
-	"net/url"
 )
-
-type Client struct {
-	BaseURL    *url.URL
-	UserAgent  string
-	HttpClient *http.Client
-}
 
 type AlphaVantageTechnicalIndicatorResponse struct {
 	Metadata AlphaVantageTechnicalIndicatorMetadata `json:"Metadata"`
@@ -60,7 +53,7 @@ const (
 	LOW               = "low"
 )
 
-func makeApiCallGet(url string, c *Client) *AlphaVantageTechnicalIndicatorResponse {
+func makeApiCallGet(url string, c *common.Client) *AlphaVantageTechnicalIndicatorResponse {
 
 	res, e := c.HttpClient.Get(url)
 	if e != nil {
